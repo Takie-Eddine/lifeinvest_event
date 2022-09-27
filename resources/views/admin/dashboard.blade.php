@@ -61,7 +61,7 @@
             </ul>
         </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="tile">
                         <h3 class="tile-title">Edit Options</h3>
                         <div class="tile-body">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="tile">
                         <h3 class="tile-title">Participants</h3>
                         <table class="table table-hover table-bordered" id="sampleTable">
@@ -104,8 +104,9 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>participation</th>
                                     <th>Country</th>
-                                    <th>City</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -116,8 +117,10 @@
                                         <td>{{$participant->first_name}}</td>
                                         <td>{{$participant->last_name}}</td>
                                         <td>{{$participant->phone}}</td>
+                                        <td>{{$participant->email }}</td>
+                                        <td>{{$participant->participation }}</td>
                                         <td>{{$participant->country->name}}</td>
-                                        <td>{{$participant->city->name ?? '__'}}</td>
+
                                         <td><a href="{{route('admin.delete.participant',$participant->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 @endforeach
@@ -125,7 +128,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="tile">
                         <h3 class="tile-title">Investors</h3>
                         <table class="table table-hover table-bordered" id="sampleTable1">
@@ -135,8 +138,8 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Phone Number</th>
+                                    <th>Email</th>
                                     <th>Country</th>
-                                    <th>City</th>
                                     <th>Share Number</th>
                                     <th>Investment Value</th>
                                     <th>Action </th>
@@ -149,8 +152,8 @@
                                         <td>{{$investor->first_name}}</td>
                                         <td>{{$investor->last_name}}</td>
                                         <td>{{$investor->phone}}</td>
+                                        <td>{{$investor->email}}</td>
                                         <td>{{$investor->country->name}}</td>
-                                        <td>{{$investor->city->name ?? '__'}}</td>
                                         <td>
                                             @foreach ($investor->shares as $item)
                                                 <span class="fw-bold">{{$item->share_number}} ,</span>
@@ -168,7 +171,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="tile">
                         <div class="tile-title-w-btn">
                             <h3 class="title">Number Of Participants</h3>
@@ -179,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="tile">
                         <div class="tile-title-w-btn">
                             <h3 class="title">Number of Investors</h3>
@@ -196,6 +199,41 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="tile">
+                        <h3 class="tile-title">Persones</h3>
+                        <table class="table table-hover table-bordered" id="sampleTable2">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Bussines Card</th>
+                                    <th>Doshtu</th>
+                                    <th>RekMaz</th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($persones as $persone)
+                                    <tr>
+                                        <td>{{$persone->id}}</td>
+                                        <td>{{$persone->first_name}}</td>
+                                        <td>{{$persone->last_name}}</td>
+                                        <td>{{$persone->phone}}</td>
+                                        <td>{{$persone->email}}</td>
+                                        <td><img src="{{asset('assets/Image/'.$persone->photo) }}"style="height: 100px; width: 150px;"></td>
+                                        <td>{{$persone->getActive()}}</td>
+                                        <td>{{$persone->getActive1()}}</td>
+                                        <td><a href="{{route('admin.delete.persone',$persone->id)}}" class="btn btn-danger">Delete</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
     </main>
 
@@ -210,6 +248,7 @@
     <script type="text/javascript" src="{{asset('assets/admin/js/plugins/dataTables.bootstrap.min.js')}}"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <script type="text/javascript">$('#sampleTable1').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable2').DataTable();</script>
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">

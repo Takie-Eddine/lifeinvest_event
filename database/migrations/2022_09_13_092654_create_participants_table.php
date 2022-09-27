@@ -18,6 +18,7 @@ class CreateParticipantsTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
+            $table->string('email');
             $table->foreignId('country_id')->references('id')->on('countries');
             $table->foreignId('city_id')->references('id')->on('cities');
             $table->string('company_name');

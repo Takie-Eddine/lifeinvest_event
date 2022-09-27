@@ -16,7 +16,7 @@ Author :        Amit Chauhan
 4. Left column / .left-side
 5. Right column / .right-side
 6. Countdown / #counter
-7. Social / .social 
+7. Social / .social
 8. Theme dark / .theme-dark
 9. Theme light / .theme-light
 10. Grid line / #grid
@@ -104,7 +104,7 @@ body{
   margin: 0 auto;
   color: #000;
   line-height: 30px;
-  font-family: Open Sans, sans-serif;
+  font-family: 'Cairo', sans-serif;
   font-size: 18px;
   font-weight: 400;
 }
@@ -228,7 +228,7 @@ p:last-child{ margin-bottom: 0; }
   display: inline-block;
 }
 .wrapper .left-side .heading{
-  font-family: Montserrat, sans-serif;
+  font-family: 'Cairo', sans-serif;
   display: block;
   font-size: 36px;
   font-weight: 600;
@@ -264,7 +264,7 @@ p:last-child{ margin-bottom: 0; }
   display: block;
 }
 .wrapper .left-side .page-countdown .countdown li span{
-  font-family: Montserrat, sans-serif;
+  font-family:'Cairo', sans-serif;
   font-weight: 700;
   font-size: 48px;
   line-height: 36px;
@@ -517,8 +517,8 @@ p:last-child{ margin-bottom: 0; }
   width: 25px;
   height: 24px;
 }
-.wrapper .right-side #menu .hamburger a span, 
-.wrapper .right-side #menu .hamburger a span:after, 
+.wrapper .right-side #menu .hamburger a span,
+.wrapper .right-side #menu .hamburger a span:after,
 .wrapper .right-side #menu .hamburger a span:before{
   display: block;
   content: "";
@@ -630,7 +630,7 @@ p:last-child{ margin-bottom: 0; }
 }
 .wrapper .right-side #content li .head{
   margin-bottom: 50px;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Cairo', sans-serif;
 }
 .wrapper .right-side #content li .head .number{
   display: block;

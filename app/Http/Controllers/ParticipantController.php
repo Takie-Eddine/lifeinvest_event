@@ -6,8 +6,11 @@ use App\Http\Requests\ParticipantRequest;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\participant;
+use Exception;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Constraint\Count;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class ParticipantController extends Controller
 {
@@ -22,21 +25,46 @@ class ParticipantController extends Controller
 
     public function create(ParticipantRequest $request){
 
-        $city = City::updateOrCreate([
-            'name' => $request->city,
-            'country_id' => $request->country,
-        ]);
+        //return $request;
+
+        try{
+                DB::beginTransaction();
+
+        // $city = City::updateOrCreate([
+        //     'name' => $request->city,
+        //     'country_id' => $request->country,
+        // ]);
+
+        $msg ='ok';
+        $erroMsg = 'not ok';
+
 
         $participant = participant::create([
             'first_name'=> $request->first_name,
             'last_name' =>$request->last_name,
             'phone' =>$request->phone,
+            'email' =>$request->email,
+            'participation' =>$request->participation,
             'company_name' =>$request->company_name,
             'country_id' =>$request->country,
-            'city_id' => $city->id,
+            //'city_id' => $city->id,
         ]);
 
-        return redirect()->route('participant.index')->with(['success' => 'ok']);
+        DB::commit();
+            return redirect()->route('participant.index')->with(['toast_success'=>'ok']);
 
+        }catch(Exception $ex){
+
+            DB::rollback();
+            return redirect()->route('participant.index')->with(['error' => 'not ok']);
+        }
+
+        return redirect()->route('participant.index')->with(['toast_success'=>$msg]);
+
+    }
+
+    public function policies(){
+
+        return view('investor.policies');
     }
 }

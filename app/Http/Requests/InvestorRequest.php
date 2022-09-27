@@ -30,11 +30,32 @@ class InvestorRequest extends FormRequest
             'phone' => 'required|max:100|unique:investors,phone,'.$this -> id,
             //'company_name' => 'required|max:100',
             'country' => 'required|exists:countries,id',
-            'city' => 'required',
+            'email'=>'required|email',
+            //'city' => 'required',
             'share_value' => 'required|exists:options,share_value',
             'share_number' => 'required',
             'investment_value' => 'required',
+            'policies' => 'required',
 
         ];
+    }
+
+    public function messages(){
+        return [
+
+            'first_name.required' => __('request.first name'),
+            'first_name.max' => __('request.first name1'),
+            'last_name.required' => __('request.last name'),
+            'last_name.max' => __('request.last name1'),
+            'phone.required' => __('request.phone'),
+            'phone.unique' => __('request.phone1'),
+            'country.required' => __('request.country'),
+            'city.required' => __('request.city'),
+
+            'share_value.required' => __('request.share value'),
+            'share_number.required' => __('request.share number'),
+            'investment_value.required' => __('request.investment value'),
+            'policies.required' =>  __('request.policies'),
+            ];
     }
 }

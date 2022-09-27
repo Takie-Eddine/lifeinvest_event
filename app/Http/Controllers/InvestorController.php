@@ -34,10 +34,10 @@ class InvestorController extends Controller
 
             DB::beginTransaction();
 
-            $city = City::updateOrCreate([
-                'name' => $request->city,
-                'country_id' => $request->country,
-            ]);
+            // $city = City::updateOrCreate([
+            //     'name' => $request->city,
+            //     'country_id' => $request->country,
+            // ]);
 
             $counter = ($request->share_number)/Option::first()->step;
 
@@ -45,10 +45,15 @@ class InvestorController extends Controller
                 'first_name'=> $request->first_name,
                 'last_name' =>$request->last_name,
                 'phone' =>$request->phone,
+                'email' =>$request->email,
                 'country_id' =>$request->country,
-                'city_id' =>$city->id,
+                //'city_id' =>$city->id,
                 'counter' =>$counter,
             ]);
+
+
+            $msg =__('investor.success');
+            $erroMsg =__('investor.error');
 
             $share = Share::create([
                 'investor_id' =>$investor->id,
@@ -58,11 +63,11 @@ class InvestorController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->route('investor.index')->with(['success' => 'ok']);
+            return redirect()->route('investor.index')->with(['toast_success'=>$msg]);
         }catch(Exception $ex){
 
             DB::rollback();
-            return redirect()->route('investor.index')->with(['error' => 'not ok']);
+            return redirect()->route('investor.index')->with(['error' => $erroMsg]);
         }
 
     }
@@ -77,6 +82,9 @@ class InvestorController extends Controller
     }
 
 
+public function policies(){
 
+        return view('investor.policies');
+    }
 
 }

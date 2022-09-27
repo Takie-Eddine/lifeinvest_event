@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ParticipantController;
 use Illuminate\Support\Facades\Route;
@@ -27,12 +27,26 @@ Route::group([
         Route::get('/', [InvestorController::class, 'index'])->name('investor.index');
         Route::post('create', [InvestorController::class, 'create'])->name('investor.create');
         Route::post('get-cities-by-country',[InvestorController::class,'getCity'])->name('get-cities-by-country');
+        Route::get('policies', [InvestorController::class, 'policies'])->name('investor.policies');
 
     });
 
     Route::group(['prefix' => 'participant'], function () {
         Route::get('/', [ParticipantController::class, 'index'])->name('participant.index');
         Route::post('create', [ParticipantController::class, 'create'])->name('participant.create');
+        Route::get('policies', [ParticipantController::class, 'policies'])->name('participant.policies');
 
     });
+
+
+
+
+
+    Route::group(['prefix' => 'event'], function () {
+        Route::get('/', [EventController::class, 'index'])->name('event.index');
+        Route::post('create', [EventController::class, 'create'])->name('event.create');
+    });
+
+
+
 });

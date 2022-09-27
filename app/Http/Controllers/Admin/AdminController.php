@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Investor;
 use App\Models\Option;
 use App\Models\participant;
+use App\Models\Persone;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -16,6 +17,7 @@ class AdminController extends Controller
         $data['participants'] = participant::all();
         $data['investors'] = Investor::all();
         $data['counter'] = Investor::sum('counter');
+        $data['persones'] = Persone::all();
 
 
         return view('admin.dashboard' ,$data);
@@ -60,6 +62,23 @@ class AdminController extends Controller
     public function deleteinvestor($id){
 
         $investor = Investor::find($id);
+        //$participant = participant::find($id);
+
+        if ( !$investor) {
+
+            return redirect()->back()->with(['error'=>'There is a problem']);
+        }
+        $investor->delete();
+        return redirect()->back()->with(['success'=>'Deleted with success']);
+
+
+    }
+
+
+
+    public function deletepersone($id){
+
+        $investor = Persone::find($id);
         //$participant = participant::find($id);
 
         if ( !$investor) {

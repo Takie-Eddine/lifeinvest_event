@@ -27,8 +27,10 @@
 <script src="https://kit.fontawesome.com/5cd97d9bd2.js" crossorigin="anonymous"></script>
 
 <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
+{{-- <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"> --}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -86,24 +88,22 @@
     <!-- Start right side -->
     <div class="right-side col-lg-5 col-md-6 nopadding">
        <!-- Grid -->
-        <div id="grid">
+        {{-- <div id="grid">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </div> --}}
 
         <!-- Menu -->
-        <div id="menu" class="clearfix">
+        {{-- <div id="menu" class="clearfix">
            <div class="hamburger clearfix"><a href="javascript:void(0)"><span></span></a></div>
             <nav>
                 <ul class="navigation clearfix">
-                    <li class="active"><a href="javascript:void(0)">{{__('participant.home')}}</a></li>
-                    <li><a href="javascript:void(0)">{{__('participant.about')}}</a></li>
-                    <li><a href="javascript:void(0)">{{__('participant.service')}}</a></li>
+
                 </ul>
             </nav>
-        </div>
+        </div> --}}
 
         <!-- Start right side content -->
 
@@ -112,11 +112,26 @@
                 <!-- Start scroll bar -->
                 <div class="scroll-bar scroll-bar-black">
                     <div class="dis-table">
+
                         <div class="dis-table-cell">
                             <!-- Content -->
+
                             <div class="table-content contact">
+                                <h4>
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"  data-language="{{ $localeCode }}">
+                                            @if ( $properties['native'] == 'العربية' && LaravelLocalization::getCurrentLocale() !=='ar')
+                                                {{$properties['native']}}
+                                            @endif
+                                            @if ($properties['native'] == 'English' && LaravelLocalization::getCurrentLocale() !=='en')
+                                                {{$properties['native']}}
+                                            @endif
+                                            </a>
+
+                                    @endforeach
+                                </h4>
                                 <div class="head animatt-fast">
-                                    <span class="number">01</span>
+
                                     <h1 class="main-title">{{__('participant.text1')}}</h1>
                                 </div>
                                 <p class="animatt-middium">{{__('participant.text2')}}</p>
@@ -136,9 +151,15 @@
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                                    <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
                                         <input name="phone" id="phone" type="text" placeholder="05385014651" class="form-control"  value="{{old('phone')}}" required>
                                         @error('phone')
+                                            <span class="text-danger"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
+                                        <input name="email" id="email" type="text" placeholder="email@emai.com" class="form-control"  value="{{old('email')}}" required>
+                                        @error('email')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -152,13 +173,33 @@
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+
+                                    </div>
+                                    {{-- <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
                                         <input name="city" id="name" type="text" placeholder="{{__('participant.city')}}" class="form-control" value="{{old('city')}}" required>
                                         @error('city')
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
+                                    </div> --}}
+                                    <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="online" type="radio" value="online" name="participation"  />
+                                            <label class="form-check-label" for="register-privacy-policy">Online</label>
+                                            @error("participation")
+                                            <span class="text-danger">{{$message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
-
+                                    <div class="col-lg-6 col-md-12 col-sm-6 pl-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="presence" type="radio" value="presence" name="participation"  />
+                                            <label class="form-check-label" for="register-privacy-policy">Presence</label>
+                                            @error("participation")
+                                            <span class="text-danger">{{$message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
                                     <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
                                         <input type="submit" value="Send" class="send-btn">
@@ -294,37 +335,38 @@
 <script type="text/javascript" src="{{asset('assets/js/jquery.downCount.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/js/custom.js')}}"></script>
 <script>
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
-        $('#country-dropdown').on('change', function() {
-            var country_id = this.value;
-            $("#city-dropdown").html('');
-            $.ajax({
-                url:"{{url('get-cities-by-country')}}",
-                type: "POST",
-                data: {
-                country_id: country_id,
-                _token: '{{csrf_token()}}'
-                },
-                dataType : 'json',
-                success: function(result){
-                    $('#city-dropdown').html('<option value="">Select City</option>');
-                    $.each(result.cities,function(key,value){
-                    $("#city-dropdown").append('<option value="'+value.id+'">'+value.name+'</option>');
-                    });
-                }
-            });
-        });
-    });
+    //     $('#country-dropdown').on('change', function() {
+    //         var country_id = this.value;
+    //         $("#city-dropdown").html('');
+    //         $.ajax({
+    //             url:"{{url('get-cities-by-country')}}",
+    //             type: "POST",
+    //             data: {
+    //             country_id: country_id,
+    //             _token: '{{csrf_token()}}'
+    //             },
+    //             dataType : 'json',
+    //             success: function(result){
+    //                 $('#city-dropdown').html('<option value="">Select City</option>');
+    //                 $.each(result.cities,function(key,value){
+    //                 $("#city-dropdown").append('<option value="'+value.id+'">'+value.name+'</option>');
+    //                 });
+    //             }
+    //         });
+    //     });
+    // });
 </script>
 <script>
     $('#share_value, #share_number').keyup(function(){
         var value = parseFloat($('#share_value').val());
         var number = parseFloat($('#share_number').val());
-
         $('#total_1').val(value * number );
     });
 </script>
+@include('sweetalert::alert')
+
 </body>
 </html>
 
