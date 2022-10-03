@@ -45,5 +45,7 @@ return [
     'min' => 'min' ,
     'invesment value' => 'Invesment Value',
     'send' => 'Send',
+    'full name' => 'Full Name',
+
 
 ];

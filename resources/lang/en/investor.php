@@ -43,5 +43,11 @@ return [
     'min' => 'min' ,
     'invesment value' => 'Invesment Value',
     'send' => 'Send',
+    'save' => 'Save',
+    'persone' => 'The registration has been completed successfully',
+    'number' => 'Your number is' ,
+    'remember' => 'Please remember it',
+
+    'personerror' => 'There is problem',
 
 ];

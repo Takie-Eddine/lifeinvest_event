@@ -3,6 +3,7 @@
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\PeopleController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -45,6 +46,13 @@ Route::group([
     Route::group(['prefix' => 'event'], function () {
         Route::get('/', [EventController::class, 'index'])->name('event.index');
         Route::post('create', [EventController::class, 'create'])->name('event.create');
+    });
+
+
+
+    Route::group(['prefix' => 'person'], function () {
+        Route::get('/', [PeopleController::class, 'index'])->name('person.index');
+        Route::post('create', [PeopleController::class, 'create'])->name('person.create');
     });
 
 

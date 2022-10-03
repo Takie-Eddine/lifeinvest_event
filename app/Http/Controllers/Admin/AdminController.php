@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Investor;
 use App\Models\Option;
+use App\Models\Partic;
 use App\Models\participant;
 use App\Models\Persone;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class AdminController extends Controller
         $data['investors'] = Investor::all();
         $data['counter'] = Investor::sum('counter');
         $data['persones'] = Persone::all();
+        $data['partics'] = Partic::all();
 
 
         return view('admin.dashboard' ,$data);
@@ -88,6 +90,21 @@ class AdminController extends Controller
         $investor->delete();
         return redirect()->back()->with(['success'=>'Deleted with success']);
 
+
+    }
+
+
+    public function deletepartic($id){
+
+        $investor = Partic::find($id);
+        //$participant = participant::find($id);
+
+        if ( !$investor) {
+
+            return redirect()->back()->with(['error'=>'There is a problem']);
+        }
+        $investor->delete();
+        return redirect()->back()->with(['success'=>'Deleted with success']);
 
     }
 

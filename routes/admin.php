@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
         Route::get('/deleteinvestor/{id}' , [AdminController::class , 'deleteinvestor'])->name('admin.delete.investor');
         Route::get('/deleteparticipant/{id}' , [AdminController::class , 'deleteparticipant'])->name('admin.delete.participant');
         Route::get('/deletepersone/{id}' , [AdminController::class , 'deletepersone'])->name('admin.delete.persone');
+        Route::get('/deletepartic/{id}' , [AdminController::class , 'deletepartic'])->name('admin.delete.partics');
 
 
 

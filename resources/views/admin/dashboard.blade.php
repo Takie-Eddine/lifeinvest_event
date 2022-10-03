@@ -234,6 +234,33 @@
                         </table>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="tile">
+                        <h3 class="tile-title">New Participant</h3>
+                        <table class="table table-hover table-bordered" id="sampleTable3">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Number</th>
+                                    <th>Full Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($partics as $partic)
+                                    <tr>
+                                        <td>{{$partic->id}}</td>
+                                        <td>{{$partic->number}}</td>
+                                        <td>{{$partic->full_name}}</td>
+                                        <td>{{$partic->phone}}</td>
+                                        <td><a href="{{route('admin.delete.partics',$partic->id)}}" class="btn btn-danger">Delete</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
     </main>
 
@@ -249,6 +276,7 @@
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <script type="text/javascript">$('#sampleTable1').DataTable();</script>
     <script type="text/javascript">$('#sampleTable2').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable3').DataTable();</script>
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">

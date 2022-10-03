@@ -30,6 +30,8 @@ class PersonetRequest extends FormRequest
             'email' => 'required|email|unique:persones',
             'photo' => 'nullable',
             'photo.*' => 'mimes:jpg,jpeg,png',
+            'doshtu' =>'required_without_all:rekmaz',
+            'rekmaz' => 'required_without_all:doshtu',
         ];
     }
 
@@ -44,6 +46,8 @@ class PersonetRequest extends FormRequest
             'phone.required' => __('request.phone'),
             'phone.unique' => __('request.phone1'),
             'email.required' => __('request.email'),
+            'doshtu.required_without_all' => 'check one at least',
+            'rekmaz.required_without_all' => 'check one at least',
             ];
     }
 }
