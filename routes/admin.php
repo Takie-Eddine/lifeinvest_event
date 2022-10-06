@@ -35,6 +35,10 @@ use Illuminate\Support\Facades\Route;
         Route::get('/deletepersone/{id}' , [AdminController::class , 'deletepersone'])->name('admin.delete.persone');
         Route::get('/deletepartic/{id}' , [AdminController::class , 'deletepartic'])->name('admin.delete.partics');
 
+        Route::get('/dar-al-nasher' , [AdminController::class , 'show'])->name('admin.show');
+        Route::post('/dar-al-nasher' , [AdminController::class , 'store'])->name('admin.store');
+        Route::get('/deletedar/{id}' , [AdminController::class , 'deletedar'])->name('admin.delete.dar');
+
 
 
 

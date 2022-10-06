@@ -15,7 +15,7 @@ class Partic extends Model
 
 
     protected $fillable = [
-        'full_name' , 'phone_number' ,
+        'full_name' , 'phone_number' , 'time' ,
     ];
 
     public $timestamps = true;
@@ -36,6 +36,6 @@ class Partic extends Model
         if ($number) {
             return $number +1;
         }
-        return $year . '0001';
+        return  $year.'0001';
     }
 }

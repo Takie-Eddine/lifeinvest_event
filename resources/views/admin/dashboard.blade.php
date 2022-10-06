@@ -253,8 +253,99 @@
                                         <td>{{$partic->id}}</td>
                                         <td>{{$partic->number}}</td>
                                         <td>{{$partic->full_name}}</td>
-                                        <td>{{$partic->phone}}</td>
+                                        <td>{{$partic->phone_number}}</td>
                                         <td><a href="{{route('admin.delete.partics',$partic->id)}}" class="btn btn-danger">Delete</a></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="tile">
+                        <h3 class="tile-title">Add Pblishing Huse</h3>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <h3>Error Occured!</h3>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="tile-body">
+                            @include('admin.alerts.errors')
+                            @include('admin.alerts.success')
+                                <form action="{{route('admin.store')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+
+                                <div class="form-group">
+                                    <label class="control-label">Name</label>
+                                    <input class="form-control" type="text" placeholder="Enter Name" name="name" value="{{old('name')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Logo</label>
+                                    <input class="form-control" type="file" name="logo">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Wing</label>
+                                    <input class="form-control" type="text" placeholder="Enter Wing" name="wing" value="{{old('wing')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">First Hour</label>
+                                    <input class="form-control" type="text" placeholder="Enter First Hour" name="first_hour" value="{{old('first_hour')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Last Hour</label>
+                                    <input class="form-control" type="text" placeholder="Enter Last Hour" name="last_hour" value="{{old('last_hour')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">First Periode</label>
+                                    <input class="form-control" type="number" placeholder="Enter First Periode" name="first_periode" value="{{old('first_periode')}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Last Periode</label>
+                                    <input class="form-control" type="number" placeholder="Enter Last Periode" name="last_periode" value="{{old('last_periode')}}">
+                                </div>
+                                <div class="tile-footer">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;
+                                    {{-- <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a> --}}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tile">
+                        <h3 class="tile-title">Dour Al-Nashr</h3>
+                        <table class="table table-hover table-bordered" id="sampleTable4">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Logo</th>
+                                    <th>Wing</th>
+                                    <th>First Hour</th>
+                                    <th>Last Hour</th>
+                                    <th>First Periode</th>
+                                    <th>Last Periode</th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($houses as $house)
+                                    <tr>
+                                        <td>{{$house->id}}</td>
+                                        <td>{{$house->name}}</td>
+                                        <td><img src="{{asset('assets/Image/'.$house->logo) }}"style="height: 100px; width: 150px;"></td>
+                                        <td>{{$house->wing}}</td>
+                                        <td>{{$house->first_hour}}</td>
+                                        <td>{{$house->last_hour}}</td>
+                                        <td>{{$house->first_periode}}</td>
+                                        <td>{{$house->last_periode}}</td>
+                                        <td><a href="{{route('admin.delete.dar',$house->id)}}" class="btn btn-danger">Delete</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -277,6 +368,7 @@
     <script type="text/javascript">$('#sampleTable1').DataTable();</script>
     <script type="text/javascript">$('#sampleTable2').DataTable();</script>
     <script type="text/javascript">$('#sampleTable3').DataTable();</script>
+    <script type="text/javascript">$('#sampleTable4').DataTable();</script>
     <!-- Page specific javascripts-->
     <!-- Google analytics script-->
     <script type="text/javascript">

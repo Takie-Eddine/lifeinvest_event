@@ -108,15 +108,28 @@
         <!-- Start right side content -->
 
         <ul id="content">
+            <br>
+            <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                {{-- <div class="col-lg-6 col-md-12 col-sm-6 pl-0"> --}}
+                    {{-- <img src="{{asset('assets/Image/logosalon.jpg')}}" alt="" width="200"> --}}
+                {{-- </div> --}}
+                <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                    <img src="{{asset('assets/Image/'.$houses->logo)}}" alt="" width="200" height="200" >
+                </div>
+            </div>
             <li class="open-tab">
+
                 <!-- Start scroll bar -->
                 <div class="scroll-bar scroll-bar-black">
+
                     <div class="dis-table">
 
                         <div class="dis-table-cell">
                             <!-- Content -->
 
                             <div class="table-content contact">
+
+                                <br>
                                 <h4>
                                     {{-- @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                         <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"  data-language="{{ $localeCode }}">
@@ -129,14 +142,25 @@
                                             </a>
 
                                     @endforeach --}}
+
                                 </h4>
                                 <div class="head animatt-fast">
 
-                                    <h1 class="main-title">{{__('participant.text1')}}</h1>
+                                    <h1 class="main-title" >{{__('participant.text15')}}</h1>
+                                    <p class="animatt-middium">  {{__('participant.text17')}}...{{__('participant.text16')}}</p>
+                                    <p class="animatt-middium"></p>
                                 </div>
-                                <p class="animatt-middium">{{__('participant.text2')}}</p>
-                                @include('participant.alerts.errors')
-                                @include('participant.alerts.success')
+
+                                        @if ($time <= $houses->first_hour)
+                                            <p class="animatt-middium">{{__('participant.text18')}}{{$houses->wing}}{{__('participant.text19')}}{{$houses->first_periode}}{{__('participant.text20')}}</p>
+                                        @else
+                                            <p class="animatt-middium">{{__('participant.text18')}}{{$houses->wing}}{{__('participant.text19')}}{{$houses->last_periode}}{{__('participant.text21')}}</p>
+                                        @endif
+
+
+
+                                {{-- @include('participant.alerts.errors')
+                                @include('participant.alerts.success') --}}
                                 <form  action="{{route('person.create')}}" method="post"  class="form clearfix animatt-middium">
                                     @csrf
                                     {{-- <div class="col-lg-6 col-md-12 col-sm-6 pl-0">

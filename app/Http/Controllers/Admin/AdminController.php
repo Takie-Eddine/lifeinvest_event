@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DarRequest;
+use App\Models\House;
 use App\Models\Investor;
 use App\Models\Option;
 use App\Models\Partic;
 use App\Models\participant;
 use App\Models\Persone;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -20,6 +25,7 @@ class AdminController extends Controller
         $data['counter'] = Investor::sum('counter');
         $data['persones'] = Persone::all();
         $data['partics'] = Partic::all();
+        $data['houses'] = House::all();
 
 
         return view('admin.dashboard' ,$data);
@@ -106,6 +112,58 @@ class AdminController extends Controller
         $investor->delete();
         return redirect()->back()->with(['success'=>'Deleted with success']);
 
+    }
+
+
+
+
+
+    public function store (DarRequest $request){
+
+        // try{
+            DB::beginTransaction();
+                $fileName= '';
+                    if ($request->has('logo')) {
+                        $file = $request->logo;
+                        $fileName = $file->getClientOriginalName();
+                        $file-> move(public_path('assets/Image'), $fileName);
+                    }
+
+                    $Dar = House::create([
+                        'name'=> $request->name,
+                        'logo' => $fileName,
+                        'wing' =>$request->wing,
+                        'first_periode' =>$request->first_periode,
+                        'last_periode' =>$request->last_periode,
+                        'first_hour' => Carbon::createFromFormat('H:i:s',$request->first_hour)->format('H:i:s') ,
+                        'last_hour' => Carbon::createFromFormat('H:i:s',$request->last_hour)->format('H:i:s'),
+                    ]);
+
+            DB::commit();
+                return redirect()->back()->with(['toast_success'=>'ok']);
+
+            // }catch(Exception $ex){
+
+            //     DB::rollback();
+            //     return redirect()->back()->with(['error' => 'not ok']);
+            // }
+
+
+
+
+    }
+
+    public function deletedar($id){
+
+        $investor = House::find($id);
+        //$participant = participant::find($id);
+
+        if ( !$investor) {
+
+            return redirect()->back()->with(['error'=>'There is a problem']);
+        }
+        $investor->delete();
+        return redirect()->back()->with(['success'=>'Deleted with success']);
     }
 
 

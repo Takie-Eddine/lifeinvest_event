@@ -4,6 +4,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\InvestorController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\PeopleController;
+use App\Http\Controllers\WinnerController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -54,6 +55,10 @@ Route::group([
         Route::get('/', [PeopleController::class, 'index'])->name('person.index');
         Route::post('create', [PeopleController::class, 'create'])->name('person.create');
     });
+
+
+
+    Route::get('/winner' ,[WinnerController::class, 'index'])->name('winner');
 
 
 

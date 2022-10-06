@@ -46,7 +46,7 @@ return [
     'save' => 'Save',
     'persone' => 'The registration has been completed successfully',
     'number' => 'Your number is' ,
-    'remember' => 'Please remember it',
+    'remember' => 'Please take a screenshot to remember',
 
     'personerror' => 'There is problem',
 

@@ -46,6 +46,12 @@ return [
     'invesment value' => 'Invesment Value',
     'send' => 'Send',
     'full name' => 'Full Name',
+    'text15'=>'Building nations by building people',
+    'text16'=>'Life Style',
+    'text17'=>'LIFEINVST',
+
+    'text18' => 'Register your details to get the subscription number to get your gift
+    To know the winners, please be present today at booth No  at 5 pm',
 
 
 ];
