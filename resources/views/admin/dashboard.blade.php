@@ -39,12 +39,20 @@
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
         <ul class="app-menu">
-            <li class="treeview"><a class="app-menu__item " href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Setting</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="{{route('admin.index')}}"><i class="icon fa fa-circle-o"></i>Index</a></li>
-                    {{-- <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i>Edit</a></li> --}}
+            <li class="treeview"><a class="app-menu__item " href="{{route('admin.participant.index')}}" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Participant</span><i class="treeview-indicator fa fa-angle-right"></i></a>
 
-                </ul>
+            </li>
+            <li class="treeview"><a class="app-menu__item " href="{{route('admin.investor.index')}}" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Investor</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+
+            </li>
+            <li class="treeview"><a class="app-menu__item " href="{{route('admin.leads.index')}}" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Leads</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+
+            </li>
+            <li class="treeview"><a class="app-menu__item " href="{{route('admin.winner.index')}}" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Book Event</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+
+            </li>
+            <li class="treeview"><a class="app-menu__item " href="{{route('admin.dar-al-nashr.index')}}" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Dour Al-Nashr</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+
             </li>
         </ul>
     </aside>
@@ -52,7 +60,7 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-edit"></i> Options </h1>
+                <h1><i class="fa fa-edit"></i> Dashboard </h1>
             </div>
             <ul class="app-breadcrumb breadcrumb">
                 <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>

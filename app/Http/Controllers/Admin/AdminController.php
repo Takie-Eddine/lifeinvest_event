@@ -120,7 +120,7 @@ class AdminController extends Controller
 
     public function store (DarRequest $request){
 
-        // try{
+        try{
             DB::beginTransaction();
                 $fileName= '';
                     if ($request->has('logo')) {
@@ -142,11 +142,11 @@ class AdminController extends Controller
             DB::commit();
                 return redirect()->back()->with(['toast_success'=>'ok']);
 
-            // }catch(Exception $ex){
+            }catch(Exception $ex){
 
-            //     DB::rollback();
-            //     return redirect()->back()->with(['error' => 'not ok']);
-            // }
+                DB::rollback();
+                return redirect()->back()->with(['error' => 'not ok']);
+            }
 
 
 

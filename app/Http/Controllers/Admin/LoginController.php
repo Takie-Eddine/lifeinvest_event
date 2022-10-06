@@ -17,7 +17,7 @@ class LoginController extends Controller
     public function postLogin(LoginRequest $request){
 
         if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")])) {
-            return redirect() -> route('admin.index');
+            return redirect() -> route('admin.participant.index');
         }
         return redirect()->back()->with(['error' => 'there is a problem']);
 

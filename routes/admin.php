@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DarAlNashrController;
+use App\Http\Controllers\Admin\EventBookController;
+use App\Http\Controllers\Admin\InvestorController;
+use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\InvestorController;
-use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\Admin\ParticipantController  ;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,19 +30,39 @@ use Illuminate\Support\Facades\Route;
 
     Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'admin'],function(){
 
-        Route::get('/' , [AdminController::class , 'index'])->name('admin.index');
-
-        Route::post('/update/{id}' , [AdminController::class , 'edit'])->name('admin.edit');
-        Route::get('/deleteinvestor/{id}' , [AdminController::class , 'deleteinvestor'])->name('admin.delete.investor');
-        Route::get('/deleteparticipant/{id}' , [AdminController::class , 'deleteparticipant'])->name('admin.delete.participant');
-        Route::get('/deletepersone/{id}' , [AdminController::class , 'deletepersone'])->name('admin.delete.persone');
-        Route::get('/deletepartic/{id}' , [AdminController::class , 'deletepartic'])->name('admin.delete.partics');
-
-        Route::get('/dar-al-nasher' , [AdminController::class , 'show'])->name('admin.show');
-        Route::post('/dar-al-nasher' , [AdminController::class , 'store'])->name('admin.store');
-        Route::get('/deletedar/{id}' , [AdminController::class , 'deletedar'])->name('admin.delete.dar');
 
 
+        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'participant'],function(){
+            Route::get('/' , [ParticipantController::class , 'index'])->name('admin.participant.index');
+            Route::get('/deleteparticipant/{id}' , [ParticipantController::class , 'delete'])->name('admin.participant.delete');
+        });
+
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'investor'],function(){
+            Route::get('/' , [InvestorController::class , 'index'])->name('admin.investor.index');
+            Route::get('/deleteinvestor/{id}' , [InvestorController::class , 'delete'])->name('admin.investor.delete');
+            Route::post('/update/{id}' , [InvestorController::class , 'edit'])->name('admin.investor.edit');
+        });
+
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'winner'],function(){
+            Route::get('/' , [EventBookController::class , 'index'])->name('admin.winner.index');
+            Route::get('/delete/{id}' , [EventBookController::class , 'delete'])->name('admin.winner.delete');
+
+        });
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'leads'],function(){
+            Route::get('/' , [LeadController::class , 'index'])->name('admin.leads.index');
+            Route::get('/delete/{id}' , [LeadController::class , 'delete'])->name('admin.leads.delete');
+
+        });
+
+        Route::group(['namespace' => 'Admin', 'middleware' => 'auth:admin', 'prefix' => 'dar-al-nashr'],function(){
+            Route::get('/' , [DarAlNashrController::class , 'index'])->name('admin.dar-al-nashr.index');
+            Route::post('/store' , [DarAlNashrController::class , 'store'])->name('admin.dar-al-nashr.store');
+            Route::get('/delete/{id}' , [DarAlNashrController::class , 'delete'])->name('admin.dar-al-nashr.delete');
+
+        });
 
 
 
