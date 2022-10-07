@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ParticExport;
 use App\Http\Controllers\Controller;
 use App\Models\Partic;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventBookController extends Controller
 {
@@ -25,5 +27,24 @@ class EventBookController extends Controller
         $investor->delete();
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
 
+    }
+
+
+    public function exportods(){
+
+
+        return Excel::download(new ParticExport,'winner.ods');
+    }
+
+    public function exportxls(){
+
+
+        return Excel::download(new ParticExport,'winner.xls');
+    }
+
+    public function exportcls(){
+
+
+        return Excel::download(new ParticExport,'winner.csv');
     }
 }

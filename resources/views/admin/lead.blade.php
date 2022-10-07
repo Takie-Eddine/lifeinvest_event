@@ -76,6 +76,14 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <h3 class="tile-title">Leads</h3>
+
+                        <a class="btn btn-primary" href="{{route('admin.leads.exportods')}}">Export(.ods)</a>
+                        <a class="btn btn-primary" href="{{route('admin.leads.exportcls')}}">Export(.csv)</a>
+                        <a class="btn btn-primary" href="{{route('admin.leads.exportxls')}}">Export(.xls)</a>
+                        <br>
+                        <br>
+
+
                         <table class="table table-hover table-bordered" id="sampleTable2">
                             <thead>
                                 <tr>

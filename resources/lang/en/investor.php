@@ -50,4 +50,6 @@ return [
 
     'personerror' => 'There is problem',
 
+    'choose project'=> 'choose project',
+
 ];

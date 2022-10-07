@@ -132,6 +132,11 @@
                 <div class="col-md-8">
                     <div class="tile">
                         <h3 class="tile-title">Dour Al-Nashr</h3>
+                        <a class="btn btn-primary" href="{{route('admin.dar-al-nashr.exportods')}}">Export(.ods)</a>
+                        <a class="btn btn-primary" href="{{route('admin.dar-al-nashr.exportcls')}}">Export(.csv)</a>
+                        <a class="btn btn-primary" href="{{route('admin.dar-al-nashr.exportxls')}}">Export(.xls)</a>
+                        <br>
+                        <br>
                         <table class="table table-hover table-bordered" id="sampleTable4">
                             <thead>
                                 <tr>

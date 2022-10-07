@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ParticExport;
+use App\Exports\ParticipantExport;
 use App\Http\Controllers\Controller;
 use App\Models\participant;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ParticipantController extends Controller
 {
@@ -25,5 +28,24 @@ class ParticipantController extends Controller
         $participant->delete();
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
 
+    }
+
+
+    public function exportods(){
+
+
+        return Excel::download(new ParticipantExport,'participant.ods');
+    }
+
+    public function exportxls(){
+
+
+        return Excel::download(new ParticipantExport,'participant.xls');
+    }
+
+    public function exportcls(){
+
+
+        return Excel::download(new ParticipantExport,'participant.csv');
     }
 }

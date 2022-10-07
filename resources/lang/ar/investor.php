@@ -49,5 +49,6 @@ return [
 
     'personerror' => 'هناك مشكلة
     ',
+    'choose project'=> ' اختر المشروع',
 
 ];

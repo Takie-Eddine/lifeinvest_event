@@ -76,6 +76,13 @@
                 <div class="col-md-10">
                     <div class="tile">
                         <h3 class="tile-title">Participants</h3>
+
+                        <h3 class="tile-title">Participants</h3>
+                        <a class="btn btn-primary" href="{{route('admin.participant.exportods')}}">Export(.ods)</a>
+                        <a class="btn btn-primary" href="{{route('admin.participant.exportcls')}}">Export(.csv)</a>
+                        <a class="btn btn-primary" href="{{route('admin.participant.exportxls')}}">Export(.xls)</a>
+                        <br>
+                        <br>
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
                                 <tr>

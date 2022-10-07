@@ -25,6 +25,8 @@ return [
     'share number' => 'Share number is required',
     'investment value' => 'Investment value is required that is mean you are messing with the settings ',
     'policies' => 'You have to read and accept the terms and conditions',
+    'project' => 'The project is required.',
+    'project1' => 'The selected project is invalid.',
 
 
 ];

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PersoneExport;
 use App\Http\Requests\PersonetRequest;
 use App\Models\Persone;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use Maatwebsite\Excel\Facades\Excel ;
 
 class EventController extends Controller
 {
@@ -69,5 +72,7 @@ class EventController extends Controller
 
 
     }
+
+
 
 }

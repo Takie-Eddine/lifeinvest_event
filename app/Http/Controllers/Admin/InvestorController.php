@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\InvestorExport;
 use App\Http\Controllers\Controller;
 use App\Models\Investor;
 use App\Models\Option;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InvestorController extends Controller
 {
@@ -36,6 +38,8 @@ class InvestorController extends Controller
             'step'=>$request->step,
             'share_value'=>$request->share_value,
             'max_value'=>$request->max_value,
+            'doshtu_max' =>$request-> doshtu_max,
+            'rekmaz_max' =>$request->rekmaz_max
         ]);
 
         return redirect()->back()->with((['toast_success'=>'Updated with success']));
@@ -54,5 +58,25 @@ class InvestorController extends Controller
         }
         $investor->delete();
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
+    }
+
+
+
+    public function exportods(){
+
+
+        return Excel::download(new InvestorExport,'investor.ods');
+    }
+
+    public function exportxls(){
+
+
+        return Excel::download(new InvestorExport,'investor.xls');
+    }
+
+    public function exportcls(){
+
+
+        return Excel::download(new InvestorExport,'investor.csv');
     }
 }

@@ -98,6 +98,14 @@
                                     <label class="control-label">Max Value</label>
                                     <input class="form-control" type="number" placeholder="Enter max value" name="max_value" value="{{$options->max_value}}">
                                 </div>
+                                <div class="form-group">
+                                    <label class="control-label">Max Doshtu</label>
+                                    <input class="form-control" type="number" placeholder="Enter max value" name="doshtu_max" value="{{$options->doshtu_max}}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Max Rekmaz</label>
+                                    <input class="form-control" type="number" placeholder="Enter max value" name="rekmaz_max" value="{{$options->rekmaz_max}}">
+                                </div>
                                 <div class="tile-footer">
                                     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;
                                     {{-- <a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a> --}}
@@ -126,6 +134,11 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <h3 class="tile-title">Investors</h3>
+                        <a class="btn btn-primary" href="{{route('admin.investor.exportods')}}">Export(.ods)</a>
+                        <a class="btn btn-primary" href="{{route('admin.investor.exportcls')}}">Export(.csv)</a>
+                        <a class="btn btn-primary" href="{{route('admin.investor.exportxls')}}">Export(.xls)</a>
+                        <br>
+                        <br>
                         <table class="table table-hover table-bordered" id="sampleTable1">
                             <thead>
                                 <tr>

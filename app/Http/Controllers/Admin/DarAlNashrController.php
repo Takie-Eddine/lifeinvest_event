@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\HouseExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DarRequest;
 use App\Models\House;
@@ -9,6 +10,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DarAlNashrController extends Controller
 {
@@ -62,5 +64,24 @@ class DarAlNashrController extends Controller
         $investor->delete();
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
 
+    }
+
+
+    public function exportods(){
+
+
+        return Excel::download(new HouseExport,'Douralnashr.ods');
+    }
+
+    public function exportxls(){
+
+
+        return Excel::download(new HouseExport,'Douralnashr.xls');
+    }
+
+    public function exportcls(){
+
+
+        return Excel::download(new HouseExport,'Douralnashr.csv');
     }
 }

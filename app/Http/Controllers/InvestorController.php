@@ -20,8 +20,9 @@ class InvestorController extends Controller
         //$data['shares'] = Share::all();
         $data['options'] = Option::first();
 
-        $data['counter'] = Investor::sum('counter');
+        $data['counter_rekmaz'] = Investor::where('doshtu','==',0)->sum('counter');
 
+        $data['counter_doshtu'] = (Investor::sum('counter') - $data['counter_rekmaz']);
         return view('investor.index',$data);
 
     }
@@ -29,6 +30,8 @@ class InvestorController extends Controller
 
 
     public function create(InvestorRequest $request){
+
+            //return $request;
 
         try{
 
@@ -38,6 +41,17 @@ class InvestorController extends Controller
             //     'name' => $request->city,
             //     'country_id' => $request->country,
             // ]);
+            if (!$request->has('project')){
+                return redirect()->route('investor.index')->with(['toast_error' => 'There is problem']);
+            }
+
+            $rekmaz = 0 ;
+            $doshtu = 1;
+            if ($request->project == 'rekmaz') {
+
+                $rekmaz = 1;
+                $doshtu = 0;
+            }
 
             $counter = ($request->share_number)/Option::first()->step;
 
@@ -49,17 +63,22 @@ class InvestorController extends Controller
                 'country_id' =>$request->country,
                 //'city_id' =>$city->id,
                 'counter' =>$counter,
+                'doshtu' => $doshtu,
+                'rekmaz' => $rekmaz,
             ]);
 
 
             $msg =__('investor.success');
             $erroMsg =__('investor.error');
 
+
+
             $share = Share::create([
                 'investor_id' =>$investor->id,
                 'investment_value' =>$request->investment_value,
                 'share_value' =>$request->share_value,
                 'share_number' =>$request->share_number,
+
             ]);
 
             DB::commit();
@@ -67,7 +86,7 @@ class InvestorController extends Controller
         }catch(Exception $ex){
 
             DB::rollback();
-            return redirect()->route('investor.index')->with(['error' => $erroMsg]);
+            return redirect()->route('investor.index')->with(['toast_error' => $erroMsg]);
         }
 
     }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ParticExport;
+use App\Exports\PersoneExport;
 use App\Http\Controllers\Controller;
 use App\Models\Persone;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LeadController extends Controller
 {
@@ -29,5 +32,24 @@ class LeadController extends Controller
         $investor->delete();
         return redirect()->back()->with(['toast_success'=>'Deleted with success']);
 
+    }
+
+
+    public function exportods(){
+
+
+        return Excel::download(new PersoneExport,'leads.ods');
+    }
+
+    public function exportxls(){
+
+
+        return Excel::download(new PersoneExport,'leads.xls');
+    }
+
+    public function exportcls(){
+
+
+        return Excel::download(new PersoneExport,'leads.csv');
     }
 }

@@ -65,8 +65,8 @@
                 <!-- Countdown -->
                 <div class="page-countdown">
                     <ul id="counter" class="countdown clearfix">
-                        <li><span class="days">{{$counter}}</span><i class="days_ref">{{__('investor.Investors-Number')}}</i></li>
-
+                        <li><span class="days">{{$counter_doshtu}}/{{$options->doshtu_max}}</span><i class="days_ref">{{__('investor.Investors-Number')}}</i></li>
+                        <li><span class="days">{{$counter_rekmaz}}/{{$options->rekmaz_max}}</span><i class="days_ref">{{__('investor.Investors-Number')}}</i></li>
                     </ul>
                 </div>
 
@@ -172,12 +172,28 @@
                                             <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
-                                    {{-- <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
-                                        <input name="city" id="name" type="text" placeholder="{{__('investor.city')}}" class="form-control" value="{{old('city')}}" >
-                                        @error('city')
-                                            <span class="text-danger"> {{ $message }}</span>
-                                        @enderror
-                                    </div> --}}
+                                    <div>
+                                        <label for="">{{__('investor.choose project')}} </label>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="online" type="radio" value="doshtu" name="project"  />
+                                                <label class="form-check-label" for="register-privacy-policy">Doshtu</label>
+                                                @error("project")
+                                                <span class="text-danger">{{$message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 pl-0">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="presence" type="radio" value="rekmaz" name="project"  />
+                                                <label class="form-check-label" for="register-privacy-policy">Rekmaz</label>
+                                                @error("project")
+                                                <span class="text-danger">{{$message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-lg-6 col-md-12 col-sm-6 pl-0">
 
